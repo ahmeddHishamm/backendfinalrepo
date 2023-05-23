@@ -2,7 +2,7 @@ const axios = require('axios');
 const Trip = require("../models/Trip.js");
 
 // Define the constants
-const API_KEY = process.env.API_KEY;
+const API_KEY = "7aa553f2ed1e72d4dba9d0bd6f487e40";
 const FORECAST_BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 // Define the function to construct the forecast URL

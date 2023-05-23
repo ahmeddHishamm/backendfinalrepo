@@ -3,21 +3,28 @@ const Trip = require("../models/Trip.js")
 
 const createTrip = async (req, res) => {
     try {
-        const data = req.body;
-        for (const doc of data) {
-            const { id, ...tripWithoutID } = doc;
-            console.log(tripWithoutID);
-            const trip = new Trip({
-                ...tripWithoutID
-            });
-            const savedTrip = await trip.save();
-        }
-        res.json(data);
+        const trip = new Trip({
+            country_name:req.body.country_name,
+            airfare_cost:req.body.airfare_cost,
+            avg_cost_per_night:req.body.avg_cost_per_night,
+            accommodation_cost:req.body.accommodation_cost,
+            meal_cost:req.body.meal_cost,
+            Total:req.body.Total,
+            departure_date:req.body.departure_date,
+            return_date:req.body.return_date,
+            country_code:req.body.country_code,
+            latitude:req.body.latitude,
+            longitude:req.body.longitude,
+            currency:req.body.currency,
+        });
+
+         await trip.save();
+       return  res.status(200).send("Trip created successfully");
     } catch (err) {
-        console.log(err);
-        res.status(500).send('Internal server error');
+       return res.status(500).json({ message: err.message });
     }
 };
+
 
  const getTrip =async (req,res) => {
     try {

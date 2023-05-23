@@ -20,6 +20,15 @@ const updateUser = async (req,res) => {
     }
 }
 
+const createUser =async (req,res) => {
+    try {
+        const newUser = await User.create(req.body);
+        return res.json(newUser);
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+}
+
 const deleteUser = async (req,res) => {
     try {
         const deletedUser = await User.findById(req.params.id);
@@ -33,7 +42,8 @@ const deleteUser = async (req,res) => {
 module.exports = {
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    createUser
 };
 
 
